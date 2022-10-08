@@ -60,7 +60,7 @@
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Comment briefly talking about what you learned and/or any difficulties you encountered and how you resolved them (or attempted to)</td></tr>
 <tr><td> <em>Response:</em> <p>I just had trouble with trying to figure out how to actually get<br>the javascript portion to full work. The script portion was very easy to<br>play around with.&nbsp;<br></p><br></td></tr>
 <tr><td> <em>Sub-Task 2: </em> Add a link to your pull request (hw branch to dev only)</td></tr>
-<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/pa284/IT202-009/pull/12">https://github.com/pa284/IT202-009/pull/12</a> </td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/pa284/IT202-009/pull/12">https://github.com/pa284/IT202-009/pull/17</a> </td></tr>
 <tr><td> <em>Sub-Task 3: </em> Add a link to your solution html file from prod (again you can assume the url at this point)</td></tr>
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://pa284-prod.herokuapp.com/M3/challenge.html#login">https://pa284-prod.herokuapp.com/M3/challenge.html#login</a> </td></tr>
 </table></td></tr>
