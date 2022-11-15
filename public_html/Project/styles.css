@@ -1,0 +1,23 @@
+.alert-success {
+    background-color: rgb(152, 250, 250);
+}
+
+.alert-warning {
+    background-color: rgb(152, 250, 250)
+}
+
+.alert-danger {
+    background-color: rgb(152, 250, 250);
+}
+
+.alert-info {
+    background-color: rgb(152, 250, 250);
+}
+nav li{display: inline; background-color:whitesmoke;}
+nav li a{color: rgb(0, 20, 108)}
+input{border-radius: 50%;}
+body{
+    background-color: whitesmoke;
+    color: rgb(0, 20, 108);
+    font-family: 'Courier New', Courier, monospace;
+}
