@@ -18,8 +18,8 @@ try{
         $db = getDB();
         $stmt = $db->prepare("SELECT balance FROM Accounts WHERE id = :accsource");
         $stmt->execute([":accsource"=>$accsource]);
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $balance = $result['balance'];
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $balanceChange = (int)$result['balance'];
         $world = -1;
 
         switch($type){
@@ -27,14 +27,14 @@ try{
                 accounts_transaction($amount, $type, $world, $accsource, $memo);
                 break;
             case 'withdraw':
-                if($amount > $balance){
+                if($amount > $balanceChange){
                     flash("Amount exceeds balance!");
                 }else{
                     accounts_transaction($amount, $type, $accsource, $world, $memo);
                 }
                 break;
             case 'transfer':
-                if($amount > $balance){
+                if($amount > $balanceChange){
                     flash("Amount exceeds balance!");
                 }else{ 
                     accounts_transaction($amount, $type, $accsource, $acc2, $memo);
