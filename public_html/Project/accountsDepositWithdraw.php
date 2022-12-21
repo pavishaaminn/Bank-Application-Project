@@ -19,7 +19,7 @@ try{
         $stmt = $db->prepare("SELECT balance FROM Accounts WHERE id = :accsource");
         $stmt->execute([":accsource"=>$accsource]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $balanceChange = (int)$result['balance'];
+        $balanceChange = $result['balance'];
         $world = -1;
 
         switch($type){
