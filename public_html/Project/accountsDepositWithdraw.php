@@ -64,7 +64,7 @@ catch(PDOException $e){
             <select id="transaction_type" name="transaction_type" onchange="hideDiv()">
                 <option value="deposit">Deposit</option>
                 <option value="withdraw">Withdraw</option>
-                <option value="transfer">Transfer</option>
+                <option value="transfer">Internal Transfer</option>
             </select>
         </div>
 
