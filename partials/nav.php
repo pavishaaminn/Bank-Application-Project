@@ -47,7 +47,7 @@ require_once(__DIR__ . "/../lib/functions.php");
                             <li><a class="dropdown-item" href="<?php echo get_url('accountsDepositWithdraw.php'); ?>">Make a Transaction</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('accountsExternalTransfer.php'); ?>">External Transfers</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('accountInformation.php'); ?>">Transaction History</a></li>
-                            <li><a class="dropdown-item" href="<?php echo get_url('accountsClose.php'); ?>">Close Account</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('accountClose.php'); ?>">Close Account</a></li>
                         </ul>
                     </li>
 
