@@ -13,13 +13,13 @@ function accounts_creating(){
 
             $id = $db->lastInsertId();
             $account_number = str_pad($id, 12, "0", STR_PAD_LEFT);
-            //$query2 = "UPDATE Accounts SET account = :account, balance = :balance WHERE id = $id";
-            $query2 = "UPDATE Accounts SET account_number = :account_number WHERE id = :id";
+            $query2 = "UPDATE Accounts SET account_number = :account_number, balance = :balance WHERE id = $id";
+            //$query2 = "UPDATE Accounts SET account_number = :account_number WHERE id = :id";
             $stmt = $db->prepare($query2);
 
             try {
-                //$stmt->execute([":account" => $account_number, ":balance" => $deposit]);
-                $stmt->execute([":account_number"=>$account_number, ":id"=>$id]);
+                $stmt->execute([":account_number" => $account_number, ":balance" => $deposit]);
+               // $stmt->execute([":account_number"=>$account_number, ":id"=>$id]);
                 accounts_transaction($deposit, $transaction_type, -1, $id, "");
                 flash("Successfully Created!");
             } 
