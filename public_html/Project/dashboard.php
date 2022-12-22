@@ -14,6 +14,7 @@ if (is_logged_in(true)) {
     <li><a class="dash-link" href="<?php echo get_url('accountCreating.php');?>">Create Account</li>
     <li><a class="dash-link" href="<?php echo get_url('accountsOwn.php');?>">My Accounts</li>
     <li><a class="dash-link" href="<?php echo get_url('accountsDepositWithdraw.php');?>">Deposit/Withdraw</li>
+    <li><a class="dash-link" href="<?php echo get_url('accountsExternalTransfer.php');?>">External Transfer</li>
     <li><a class="dash-link" href="<?php echo get_url('accountsTransaction.php');?>">Transaction History</li>
     <li><a class="dash-link" href="<?php echo get_url('profile.php');?>">Profile</li>
 </ul>
