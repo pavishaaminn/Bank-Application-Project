@@ -8,6 +8,7 @@ if (isset($_POST["save"])) {
     $username = se($_POST, "username", null, false);
     $fname = se($_POST, "fname", null, false);
     $lname = se($_POST, "lname", null, false);
+    $public = se($_POST, "public", null, false);
     $hasError = false;
     //sanitize
     $email = sanitize_email($email);
@@ -30,9 +31,9 @@ if (isset($_POST["save"])) {
     }
 
     if (!$hasError) {
-        $params = [":email" => $email, ":username" => $username, ":fname" => $fname, ":lname" => $lname,":id" => get_user_id()];
+        $params = [":email" => $email, ":username" => $username, ":fname" => $fname, ":lname" => $lname,":id" => get_user_id(), ":public" => $public];
         $db = getDB();
-        $stmt = $db->prepare("UPDATE Users set email = :email, username = :username, fname = :fname, lname = :lname where id = :id");
+        $stmt = $db->prepare("UPDATE Users set email = :email, username = :username, fname = :fname, lname = :lname, public = :public where id = :id");
         try {
             $stmt->execute($params);
             flash("Profile saved", "success");
@@ -40,7 +41,7 @@ if (isset($_POST["save"])) {
             users_check_duplicate($e->errorInfo);
         }
         //select fresh data from table
-        $stmt = $db->prepare("SELECT id, email, fname, lname, username from Users where id = :id LIMIT 1");
+        $stmt = $db->prepare("SELECT id, email, fname, lname, public, IFNULL(username,email) as `username` from Users where id = :id LIMIT 1");
         try {
             $stmt->execute([":id" => get_user_id()]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -50,6 +51,7 @@ if (isset($_POST["save"])) {
                 $_SESSION["user"]["username"] = $user["username"];
                 $_SESSION["user"]["fname"] = $user["fname"];
                 $_SESSION["user"]["lname"] = $user["lname"];
+                $_SESSION["user"]["public"] = $user["public"];
             } else {
                 flash("User doesn't exist", "danger");
             }
@@ -107,6 +109,7 @@ $email = get_user_email();
 $username = get_username();
 $fname = get_fname();
 $lname = get_lname();
+$public = get_public();
 ?>
 <div class="container-fluid">
     <h1>Profile</h1>
@@ -143,6 +146,21 @@ $lname = get_lname();
         <div class="mb-3">
             <label class="form-label" for="conp">Confirm Password</label>
             <input class="form-control" type="password" name="confirmPassword" id="conp" />
+        </div>
+        <br>
+        <div class="mb-3">
+        <label class="form-label" for="public">Account Status: </label>
+        <?php 
+            if($public == '1'){
+                echo"Account is Public";
+            }else{
+                echo"Account is Private";
+            }
+        ?>
+            <select name="public" id="public">
+                <option value=1>Public</option>
+                <option value=0>Private</option>
+            </select>
         </div>
         <input type="submit" class="mt-3 btn btn-primary" value="Update Profile" name="save" />
     </form>
