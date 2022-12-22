@@ -60,3 +60,10 @@ function get_lname(){
     }
     return false;
 }
+
+function get_public(){
+    if(is_logged_in()){
+        return se($_SESSION ["user"], "public", "", false);
+    }
+    return false;
+}
