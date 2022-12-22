@@ -27,4 +27,7 @@ require(__DIR__ . "/get_url.php");
 require(__DIR__ . "/accounts_balance.php");
 require(__DIR__ . "/accounts_creating.php");
 require(__DIR__ . "/accounts_transaction.php");
+
+//pagination
+require(__DIR__ . "/pagination.php");
 ?>
