@@ -16,3 +16,11 @@ function is_valid_password($password)
 {
     return strlen($password) >= 8;
 }
+function is_valid_fname($fname = "")
+{
+    return strlen($fname) >= 3;
+}
+function is_valid_lname($lname = "")
+{
+    return strlen($lname) >= 1;
+}

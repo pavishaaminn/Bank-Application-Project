@@ -46,3 +46,17 @@ function get_user_id()
     }
     return false;
 }
+
+function get_fname(){
+    if (is_logged_in()){
+        return se($_SESSION["user"], "fname", "", false);
+    }
+    return false;
+}
+
+function get_lname(){
+    if (is_logged_in()){
+        return se($_SESSION["user"], "lname", "", false);
+    }
+    return false;
+}
