@@ -34,7 +34,12 @@ try{
         if($amount > $balanceChange){
             flash("Amount exceeds balance!");
         }else{ 
-            accounts_transaction($amount, $type, $accsource, $acc2, $memo);
+            accounts_transaction($amount, $account_type, $accsource, $acc2, $memo);
+        }
+        if($amount < 0){
+            flash("Amount is not acceptable!");
+        } else {
+            accounts_transaction($amount, $account_type, $accsource, $acc2, $memo);
         }
     }
     $stmt = $db->prepare("SELECT id, account_number, balance FROM Accounts WHERE user_id = :user_id");
