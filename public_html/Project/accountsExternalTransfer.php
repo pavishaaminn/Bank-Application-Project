@@ -9,10 +9,10 @@ $db = getDB();
 
 try{
     if(isset($_POST["choose_account"]) && isset($_POST["amount"]) && isset($_POST["memo"])) {
-        $type = 'external-transfer';
+        $type = 'ext-transfer';
         $accsource = se($_POST, "choose_account", "", false);
         $user_last = se($_POST, "user_last", "", false);
-        $accdest = (int)se($_POST, "account_number2", "", false);
+        $accdest = (int)se($_POST, "acc2", "", false);
         $amount = $_POST ['amount'];
         $memo = se($_POST, "memo", "", false);
 
@@ -24,7 +24,7 @@ try{
                             WHERE Users.lname = :user_last AND Accounts.id = :accdest ");
         $stmt->execute([":user_last"=>$user_last, ":accdest"=>$accdest]);
         $re = $stmt->fetch(PDO::FETCH_ASSOC);
-        $account_number2 = $re['id'];
+        $acc2 = $re['id'];
 
         $stmt = $db->prepare("SELECT balance FROM Accounts WHERE id = :accsource");
         $stmt->execute([":accsource"=>$accsource]);
@@ -34,7 +34,7 @@ try{
         if($amount > $balanceChange){
             flash("Amount exceeds balance!");
         }else{ 
-            accounts_transaction($amount, $type, $accsource, $account_number2, $memo);
+            accounts_transaction($amount, $type, $accsource, $acc2, $memo);
         }
     }
     $stmt = $db->prepare("SELECT id, account_number, balance FROM Accounts WHERE user_id = :user_id");
@@ -65,12 +65,12 @@ catch(PDOException){
         </div>
 
         <div class="mb-3" id="user_last">
-            <label class="form-label" for="user_last">Other User's Last Name</label>
+            <label class="form-label" for="user_last">Other Account Holder's Last Name</label>
             <input class="form-control" type="text" name="user_last"/>
         </div>
         
         <div class="mb-3" id="second_account">
-            <label class="form-label" for="account">Choose Second Account (Last 4 Digits)</label>
+            <label class="form-label" for="account">Other Account Holder's Account (Last 4 Digits)</label>
             <input class="form-control" type="text" maxlength="4" name="acc2"/>
         </div>
 
